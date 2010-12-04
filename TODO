@@ -1,0 +1,11 @@
+
+- Custom argument handler for the content_id: for %1 in titles.
+- Argument handler for either 'fid' or Flag's 'name'.
+- Make the 'Ops' work for multiple flags?
+
+- Investigate Views 3 (?) click-sort bug.
+- Does it work on Views 2 as well? Is there a click-sort bug there?
+- Add validate() for missing flags?
+
+- Does it work with Flag 1.x ?
+

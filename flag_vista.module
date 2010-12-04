@@ -1,0 +1,28 @@
+<?php
+/**
+ * @file
+ * Alternative Views support for the Flag module.
+ */
+
+/**
+ * Implementation of hook_views_api().
+ */
+function flag_vista_views_api() {
+  return array(
+    'api' => 2.0,
+  );
+}
+
+/**
+ * Implementation of hook_views_query_substitutions().
+ *
+ * Since Views doesn't let us alias base tables, we implement this "feature" ourselves
+ * by rewriting the table names in the SQL query.
+ */
+function flag_vista_views_query_substitutions() {
+  return array(
+    '{flag_vista_flaggings}' => '{flag_content}',
+    '{flag_vista_statistics}' => '{flag_counts}',
+    '{flag_vista_flags}' => '{flags}',
+  );
+}

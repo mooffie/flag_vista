@@ -1,0 +1,5 @@
+name = Flag Vista
+description = Alternative Views support for the Flag module.
+core = 6.x
+package = Flags
+php = 5

@@ -169,6 +169,20 @@ function flag_vista_views_data() {
     ),
   );
 
+  // The following relationship makes it possible to construct views like
+  // #370886 (and #370343).
+  $data['flag_vista_flags']['flag_flaggings_rel'] = array(
+    'title' => t('Flaggings'),
+    'help' => t('The flaggings that belong to this flag.'),
+    'relationship' => array(
+      'base' => 'flag_vista_flaggings',
+      'base field' => 'fid',
+      'relationship field' => 'fid',
+      'handler' => 'views_handler_relationship',
+      'label' => t('flag flaggings'),
+    ),
+  );
+
   // Note: In the future this table will also have a 'weight' column.
 
   // ----------------------------------------------------------------------

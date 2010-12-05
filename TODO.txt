@@ -3,9 +3,5 @@
 - Argument handler for either 'fid' or Flag's 'name'.
 - Make the 'Ops' work for multiple flags?
 
-- Investigate Views 3 (?) click-sort bug.
-- Does it work on Views 2 as well? Is there a click-sort bug there?
+- Investigate Views 3 click-sort bug.
 - Add validate() for missing flags?
-
-- Does it work with Flag 1.x ?
-

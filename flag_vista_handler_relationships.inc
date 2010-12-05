@@ -240,7 +240,7 @@ class flag_vista_handler_relationship__flaggings_by_flag_and_user extends flag_v
         else {
           $counter['non_globals']++;
         }
-        if (array_search(DRUPAL_ANONYMOUS_RID, $flag->roles['flag']) !== FALSE) {
+        if (_flag_vista__is_anonymous($flag)) {
           $counter['anonymous']++;
         }
       }

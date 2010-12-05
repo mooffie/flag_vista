@@ -356,3 +356,10 @@ function _flag_vista__get_relationship($handler) {
   }
 }
 
+/**
+ * Returns TRUE if the flag supports anonymous flagging.
+ */
+function _flag_vista__is_anonymous($flag) {
+  return (!$flag->global && function_exists('flag_get_sid') && (array_search(DRUPAL_ANONYMOUS_RID, $flag->roles['flag']) !== FALSE));
+}
+

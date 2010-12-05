@@ -54,7 +54,7 @@ class flag_vista_handler_field_ops_single extends views_handler_field {
   function pre_render($values) {
     global $user;
     $flag = $this->get_flag();
-    $is_anonymous = (!$flag->global && function_exists('flag_get_sid')); // Flag 2.x only.
+    $is_anonymous = _flag_vista__is_anonymous($flag);
 
     $actions = array();
     foreach ($values as $row) {

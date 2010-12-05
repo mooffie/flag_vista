@@ -88,7 +88,20 @@ class flag_vista_handler_relationship__flaggings_by_flag extends views_handler_r
       $form_state['no flags exist'] = TRUE;
     }
   }
-  
+
+  // Adds the flag name (the first, if there are multiple) to the admin UI.
+  function admin_summary() {
+    $output = '';
+    if ($this->options['flags']) {
+      $first = reset($this->options['flags']);
+      $output = (flag_get_flag($first) ? flag_get_flag($first)->get_title() : $first);
+      if (count($this->options['flags']) > 1) {
+        $output .= ', ...';
+      }
+    }
+    return $output;
+  }
+
   function options_validate($form, &$form_state) {
     if (!empty($form_state['no flags exist'])) {
       form_error($form, t('You must first create a flag'));

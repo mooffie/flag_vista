@@ -5,5 +5,4 @@
 
 - Investigate Views 3 click-sort bug.
 - Add validate() for missing flags?
-- Add flag name to UI.
 

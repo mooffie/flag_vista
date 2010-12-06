@@ -3,5 +3,3 @@
 - Argument handler for either 'fid' or Flag's 'name'.
 - Make the 'Ops' work for multiple flags?
 
-- Investigate Views 3 click-sort bug.
-

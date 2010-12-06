@@ -56,6 +56,26 @@ class flag_vista_handler_relationship__content_by_type extends views_handler_rel
  */
 class flag_vista_handler_relationship__flaggings_by_flag extends views_handler_relationship {
 
+  /**
+   * Notify the admin of any missing flag(s).
+   *
+   * When importing views, or when deleting flags, a relationship may end up 
+   * referring to non existent flags. This won't cause the view to crash, but 
+   * the admin would probably appreciate being informed of that.
+   */
+  function validate() {
+    $errors = array();
+    foreach ($this->options['flags'] as $flag_name) {
+      if (!flag_get_flag($flag_name)) {
+        $errors[] = t('This view is looking for a flag by the name "@flag-name", but there is no such flag. Perhaps it was deleted. Please update the relationship "@relationship-name" in this view to use existing flags only.', array(
+          '@flag-name' => $flag_name,
+          '@relationship-name' => $this->ui_name(),
+        ));
+      }
+    }
+    return $errors;
+  }
+
   function option_definition() {
     $options = parent::option_definition();
     $options['flags'] = array('default' => array());

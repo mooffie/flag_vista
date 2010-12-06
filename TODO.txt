@@ -4,5 +4,5 @@
 - Make the 'Ops' work for multiple flags?
 
 - Investigate Views 3 click-sort bug.
-- Add validate() for missing flags?
+- 'Ops' should detect missing flag.
 

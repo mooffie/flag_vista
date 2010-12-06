@@ -176,7 +176,6 @@ function flag_vista_views_data() {
       'handler' => 'views_handler_field',
       'click sortable' => TRUE,
     ),
-    // @todo: bug: Views can't click-sort. But the following handler is ok.
     'sort' => array(
       'handler' => 'views_handler_sort',
     ),

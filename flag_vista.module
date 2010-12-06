@@ -16,8 +16,17 @@ function flag_vista_views_api() {
 /**
  * Implementation of hook_views_query_substitutions().
  *
- * Since Views doesn't let us alias base tables, we implement this "feature" ourselves
- * by rewriting the table names in the SQL query.
+ * A short overview of this hack:
+ *
+ * The Flag module already has its own Views support. So we must pick different 
+ * table names for ours. These tables don't really exist in the database. How 
+ * do we tell Views/Drupal of the real names of our tables? We could use the 
+ * 'table' slot, which is part of the 'join' definition, but this 'join' 
+ * definition exists only for non-base tables: we're exposing the flagging 
+ * table as a base table, and we won't have a 'join' there. So we resort to a 
+ * hack: we rewrite the SQL query to replace the table names.
+ *
+ * Ultimately Views should be able to alias base tables; see #464970.
  */
 function flag_vista_views_query_substitutions() {
   return array(

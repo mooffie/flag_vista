@@ -41,6 +41,14 @@ function flag_vista_views_handlers() {
         'parent' => 'views_handler_field',
         'file' => 'flag_vista_handler_field_ops.inc',
       ),
+      'flag_vista_handler_argument_fid' => array(
+        'parent' => 'views_handler_argument_numeric',
+        'file' => 'flag_vista_handler_argument_fid.inc',
+      ),
+      'flag_vista_handler_argument_flag_name' => array(
+        'parent' => 'views_handler_argument',
+        'file' => 'flag_vista_handler_argument_flag_name.inc',
+      ),
     ),
   );
 }
@@ -96,7 +104,12 @@ function flag_vista_views_data() {
       'handler' => 'views_handler_relationship',
       'label' => t('flag'),
     ),
-    // @todo: argument? (+summary)  or should we put it on the flag 'name' column?
+    'argument' => array(
+      'title' => t('Flag ID (numeric)'),
+      'help' => t('Filter the flaggings to those of certain flag(s).'),
+      'handler' => 'flag_vista_handler_argument_fid',
+      'numeric' => TRUE,
+    ),
   );
 
   $data['flag_vista_flaggings']['timestamp'] = array(
@@ -183,6 +196,26 @@ function flag_vista_views_data() {
     ),
   );
 
+  $data['flag_vista_flags']['name'] = array(
+    'title' => t('Machine-name'),
+    'argument' => array(
+      'help' => t('Filter the flags to that of a certain name.'),
+      'handler' => 'flag_vista_handler_argument_flag_name',
+      'name field' => 'title', // The field to display in the summary.
+    ),
+    // Should we add a 'field' and 'sort' entries as well? Would a 'field' be
+    // useful for Views' token replacement feature?
+  );
+
+  $data['flag_vista_flags']['fid'] = array(
+    'argument' => array(
+      'title' => t('Flag ID (numeric)'),
+      'help' => t('Filter the flags to those of a certain ID or IDs.'),
+      'handler' => 'flag_vista_handler_argument_fid',
+      'numeric' => TRUE,
+    ),
+  );
+
   // Note: In the future this table will also have a 'weight' column.
 
   // ----------------------------------------------------------------------
@@ -225,7 +258,12 @@ function flag_vista_views_data() {
       'handler' => 'views_handler_relationship',
       'label' => t('flag'),
     ),
-    // @todo: argument? (+summary)   or should we put it on the flag 'name' column?
+    'argument' => array(
+      'title' => t('Flag ID (numeric)'),
+      'help' => t('Filter the statistics to that of certain flag(s).'),
+      'handler' => 'flag_vista_handler_argument_fid',
+      'numeric' => TRUE,
+    ),
   );
 
   return $data;

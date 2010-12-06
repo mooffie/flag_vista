@@ -1,4 +1,3 @@
 
 - Custom argument handler for the content_id: for %1 in titles.
-- Argument handler for either 'fid' or Flag's 'name'.
 

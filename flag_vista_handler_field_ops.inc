@@ -6,8 +6,7 @@
  * Contains the flag Ops field handler.
  */
 
-// We name it _single because in the future we may have one that handles multiple flags.
-class flag_vista_handler_field_ops_single extends views_handler_field {
+class flag_vista_handler_field_ops extends views_handler_field {
 
   function option_definition() {
     $options = parent::option_definition();

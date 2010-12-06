@@ -37,7 +37,7 @@ function flag_vista_views_handlers() {
         'parent' => 'views_handler_filter_in_operator',
         'file' => 'flag_vista_handler_filter_flag.inc',
       ),
-      'flag_vista_handler_field_ops_single' => array(
+      'flag_vista_handler_field_ops' => array(
         'parent' => 'views_handler_field',
         'file' => 'flag_vista_handler_field_ops.inc',
       ),
@@ -273,7 +273,7 @@ function flag_vista_views_data_alter(&$data) {
       'help' => t('Provide a link to flag/unflag this @flag-type.', array('@flag-type' => $flag_type)),
       'field' => array(
         'flag type' => $flag_type,
-        'handler' => 'flag_vista_handler_field_ops_single',
+        'handler' => 'flag_vista_handler_field_ops',
         'additional fields' => array('content_id' => array('field' => $info['join field'])),
       ),
     );

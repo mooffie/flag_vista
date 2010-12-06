@@ -74,7 +74,12 @@ class flag_vista_handler_field_ops_single extends views_handler_field {
     }
 
     $this->flag_actions = $actions;
-    $this->flag_applies = $actions ? $flag->access_multiple($actions) : array();
+    if (_flag_vista__is_flag_2()) {
+      $this->flag_applies = $actions ? $flag->access_multiple($actions) : array();
+    }
+    else {
+      $this->flag_applies = $actions ? $flag->applies_to_content_id_array(array_keys($actions)) : array();
+    }
   }
 
   function render($values) {

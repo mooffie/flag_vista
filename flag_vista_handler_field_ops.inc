@@ -53,7 +53,9 @@ class flag_vista_handler_field_ops_single extends views_handler_field {
    */
   function pre_render($values) {
     global $user;
-    $flag = $this->get_flag();
+    if (!($flag = $this->get_flag())) {
+      return; // render() will take care of printing an error message.
+    }
     $is_anonymous = _flag_vista__is_anonymous($flag);
 
     $actions = array();
@@ -83,7 +85,9 @@ class flag_vista_handler_field_ops_single extends views_handler_field {
   }
 
   function render($values) {
-    $flag = $this->get_flag();
+    if (!($flag = $this->get_flag())) {
+      return t('Missing flag "@flag-name".', array('@flag-name' => $this->options['flag']));
+    }
     $content_id = $values->{$this->aliases['content_id']};
 
     if (empty($this->flag_applies[$content_id])) {

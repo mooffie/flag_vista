@@ -49,6 +49,10 @@ function flag_vista_views_handlers() {
         'parent' => 'views_handler_argument',
         'file' => 'flag_vista_handler_argument_flag_name.inc',
       ),
+      'flag_vista_handler_argument_content_id' => array(
+        'parent' => 'views_handler_argument_numeric',
+        'file' => 'flag_vista_handler_argument_content_id.inc',
+      ),
     ),
   );
 }
@@ -135,11 +139,10 @@ function flag_vista_views_data() {
     'title' => t('Content ID'),
     'help' => t('The unique ID of the item that has been flagged.'),
     'argument' => array(
-      // Note that we use the plain handler. FOVS uses a custom handler in order 
-      // to support summary titles, but we don't need this: just bring in the 
-      // item (e.g. node) relationship.
-      'handler' => 'views_handler_argument_numeric',
+      'handler' => 'flag_vista_handler_argument_content_id',
     ),
+    // Should we add a 'field' entry as well? Would a 'field' be
+    // useful for Views' token replacement feature?
   );
 
   // Sprout a relationship for every flaggable object.

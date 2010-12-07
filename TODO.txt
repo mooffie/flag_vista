@@ -1,3 +1,0 @@
-
-- Custom argument handler for the content_id: for %1 in titles.
-

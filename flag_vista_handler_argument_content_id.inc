@@ -8,7 +8,7 @@
  *   this (see http://drupal.org/node/991472#vista-content-it for reason).
  *
  * - Theres a feature request for "listing all users who haven't bookmarked a 
- *   certain node"; see http://XXXXX @todo: find URL.
+ *   certain node"; see http://drupal.org/node/479390
  */
 class flag_vista_handler_argument_content_id extends views_handler_argument_numeric {
 }

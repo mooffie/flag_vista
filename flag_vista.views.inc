@@ -345,7 +345,10 @@ function flag_vista_views_data_alter(&$data) {
  * It uses the "skip base" setting to do this; see http://drupal.org/node/288599
  */
 function _flag_vista_hide_fovs(&$data) {
-  $base_tables = array('node', 'users');  // @todo: make a list of all the tables.
+  if (!function_exists('views_fetch_base_tables')) {
+    views_include('admin');
+  }
+  $base_tables = array_keys(views_fetch_base_tables());
   foreach (array_keys(flag_fetch_definition()) as $flag_type) {
     $flag = flag_flag::factory_by_content_type($flag_type);
     $info = $flag->get_views_info();

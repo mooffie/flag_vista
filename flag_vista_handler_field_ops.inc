@@ -1,5 +1,4 @@
 <?php
-// $Id: flag_handler_field_ops.inc,v 1.1.2.5.2.3 2010-01-08 04:43:17 quicksketch Exp $
 
 /**
  * @file
@@ -64,6 +63,13 @@ class flag_vista_handler_field_ops extends views_handler_field {
       }
     }
 
+    // No items to inspect. We exit to prevent issuing an invalid SQL query ("... content_id IN ()").
+    if (!$actions) {
+      $this->flag_actions = array();
+      $this->flag_applies = array();
+      return;
+    }
+
     $query = "SELECT content_id FROM {flag_content} WHERE fid = %d AND content_id IN (" . implode(', ', array_keys($actions)) . ") AND uid = %d";
     if ($is_anonymous) {
       $query .= ' AND sid = %d';
@@ -76,10 +82,10 @@ class flag_vista_handler_field_ops extends views_handler_field {
 
     $this->flag_actions = $actions;
     if (_flag_vista__is_flag_2()) {
-      $this->flag_applies = $actions ? $flag->access_multiple($actions) : array();
+      $this->flag_applies = $flag->access_multiple($actions);
     }
     else {
-      $this->flag_applies = $actions ? $flag->applies_to_content_id_array(array_keys($actions)) : array();
+      $this->flag_applies = $flag->applies_to_content_id_array(array_keys($actions));
     }
   }
 
